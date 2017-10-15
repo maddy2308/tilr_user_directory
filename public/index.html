@@ -28,7 +28,7 @@
         </div>
         <div id="navbar1" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Contacts</a></li>
+                <li class="active"><a href="#!home">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#!register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -51,6 +51,16 @@
 <script src="/scripts/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="./app.js"></script>
 
+<script src="modules/home/js/app.HomeController.js"></script>
 <script src="./modules/login/js/app.UserController.js"></script>
+
 <script src="./services/app.UserService.js"></script>
+<script src="./services/app.ContactService.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </html>

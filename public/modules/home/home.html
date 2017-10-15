@@ -1,0 +1,19 @@
+<!--<h3 class="well-sm">-->
+    <!--<input type="button" ng-click="homeCtrl.getContacts()" value="Get Contacts" class="btn btn-info">-->
+<!--</h3>-->
+<div class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="right" title="Create Contact">
+    <i class="glyphicon glyphicon-plus"></i>
+</div>
+
+<div class="container-fluid row">
+    <h4>My Contacts: </h4>
+    <div class="list-group col-md-4 col-sm-8 col-xs-12" ng-repeat="contact in homeCtrl.mycontacts">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+             class="img-responsive img-thumbnail" style="height: 50px">
+        <a href="#" class="">{{contact.first_name}} {{contact.last_name}}</a>
+    </div>
+
+    <div class="alert-danger" ng-if="homeCtrl.mycontacts.length <= 0"></div>
+</div>
+
+
