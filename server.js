@@ -40,3 +40,6 @@ app.listen(port);
 console.log('Magic happens at http://localhost:' + port);
 
 require("./server/app")(app, mongoose);
+
+// serve the html files to the client from public directory
+app.use(express.static(__dirname + '/public'));
