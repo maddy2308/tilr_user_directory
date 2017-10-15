@@ -12,6 +12,7 @@
 
         self.getContacts = getContacts();
         self.openAddContactDialog = openAddContactDialog;
+        self.deleteContact = deleteContact;
 
         if (!self.token || self.token.length <= 0) {
             $location.path("/login");
@@ -43,6 +44,25 @@
                 getContacts();
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
+            });
+        }
+
+        function deleteContact(contact) {
+            console.log(contact);
+            swal({
+                title: "Are You sure?",
+                text: "You will not be able to recover this contact again!",
+                type: "warning",
+                confirmButtonClass: "btn-danger",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }, function () {
+                contactService.deleteContact(contact._id, self.token).then(function () {
+                    swal("Contact deleted");
+                }, function(error) {
+                    swal("Contact was not deleted, try again in few minutes");
+                });
             });
         }
 

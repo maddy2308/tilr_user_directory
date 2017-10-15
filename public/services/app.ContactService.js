@@ -8,7 +8,8 @@
 
         return {
             getContacts: getContacts,
-            addContact: addContact
+            addContact: addContact,
+            deleteContact: deleteContact
         };
 
         function getContacts(token) {
@@ -31,6 +32,13 @@
             };
             deferred = $q.defer();
             $http({method: 'POST', url: '/rest/contact', headers: {'x-access-token' : token}, data : contact})
+                .then(successfulProcess).catch(failedProcess);
+            return deferred.promise;
+        }
+
+        function deleteContact(contactID, token) {
+            deferred = $q.defer();
+            $http({method: 'DELETE', url: '/rest/contact/' + contactID, headers: {'x-access-token' : token}})
                 .then(successfulProcess).catch(failedProcess);
             return deferred.promise;
         }
