@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("tilr_contact", ['ngRoute'])
+        .module("tilr_contact", ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
         .config(function ($routeProvider) {
             $routeProvider
 
