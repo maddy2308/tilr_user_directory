@@ -4,7 +4,7 @@ module.exports = function (app, authService, contactDAO) {
     app.get('/rest/contacts', authService.ensureToken, getAllContacts);
     app.post('/rest/contact', authService.ensureToken, createContact);
     app.patch('/rest/contact', authService.ensureToken, updateContact);
-    app.delete('/rest/contact', authService.ensureToken, deleteContact);
+    app.delete('/rest/contact/:contactID', authService.ensureToken, deleteContact);
 
     function getContact(req, res) {
         var docId = req.params['contactID'];
@@ -31,7 +31,12 @@ module.exports = function (app, authService, contactDAO) {
     }
 
     function deleteContact (req, res) {
-        console.log("in delete Contact method");
+        console.log("in delete Contact method " + req.params.contactID);
+        return contactDAO.deleteContact(req, function(response) {
+            res.send(response);
+        }, function(error) {
+            res.send(error);
+        });
     }
 
 };
