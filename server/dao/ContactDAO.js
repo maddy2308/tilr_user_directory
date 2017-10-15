@@ -10,30 +10,28 @@
         };
 
         function getAllContacts (req, successHandler, errorHandler) {
-            contactModel.find({}, function(error, data) {
-                handleResponse(error, data, successHandler, errorHandler);
+            var _userId = req.decoded['_id'];
+            contactModel.find({'_user': _userId }, function(error, data) {
+                if (error) {
+                    errorHandler(error);
+                } else {
+                    successHandler(data);
+                }
             });
         }
 
 
         function createContact(req, successHandler, errorHandler) {
-            // create a sample user
-            var nick = {
-                first_name: 'Jane',
-                last_name: 'Doe'
-            };
-
-            return new contactModel(nick).save(function (error, data) {
-                handleResponse(error, data, successHandler, errorHandler);
+            var contact = req.body['new_contact'];
+            var decoded = req.decoded;
+            contact['_user'] = decoded['_id'];
+            return new contactModel(contact).save(function (error, data) {
+                if (error) {
+                    errorHandler(error);
+                } else {
+                    successHandler("contact saved successfully");
+                }
             });
-        }
-
-        function handleResponse(error, data, successHandler, errorHandler) {
-            if (error) {
-                errorHandler(error);
-            } else {
-                successHandler(data);
-            }
         }
     }
 })();

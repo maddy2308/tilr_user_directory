@@ -1,10 +1,10 @@
-module.exports = function (app, contactDAO) {
+module.exports = function (app, authService, contactDAO) {
 
     app.get('/rest/contact/:contactID', getContact);
-    app.get('/rest/contacts', getAllContacts);
-    app.post('/rest/contact', createContact);
-    app.patch('/rest/contact', updateContact);
-    app.delete('/rest/contact', deleteContact);
+    app.get('/rest/contacts', authService.ensureToken, getAllContacts);
+    app.post('/rest/contact', authService.ensureToken, createContact);
+    app.patch('/rest/contact', authService.ensureToken, updateContact);
+    app.delete('/rest/contact', authService.ensureToken, deleteContact);
 
     function getContact(req, res) {
         var docId = req.params['contactID'];
