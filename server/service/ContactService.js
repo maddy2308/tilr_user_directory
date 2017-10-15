@@ -11,11 +11,14 @@ module.exports = function (app, contactDAO) {
     }
 
     function getAllContacts(req, res) {
-        console.log("in getAll Contact method");
+        return contactDAO.getAllContacts(req,function(response) {
+            res.send(response);
+        }, function(error) {
+            res.send(error);
+        });
     }
 
     function createContact(req, res) {
-        console.log("in create Contact method");
         return contactDAO.createContact(req, function(response) {
             res.send(response);
         }, function(error) {
