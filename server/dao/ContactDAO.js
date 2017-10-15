@@ -4,9 +4,9 @@
         return {
             getAllContacts: getAllContacts,
             //getContact: getContact,
-            createContact: createContact
+            createContact: createContact,
             //updateContact: updateContact,
-            //deleteContact: deleteContact
+            deleteContact: deleteContact
         };
 
         function getAllContacts (req, successHandler, errorHandler) {
@@ -30,6 +30,17 @@
                     errorHandler(error);
                 } else {
                     successHandler("contact saved successfully");
+                }
+            });
+        }
+
+        function deleteContact (req, successHandler, errorHandler) {
+            return contactModel.remove({ _id: req.params.contactID }, function(err) {
+                if (!err) {
+                    successHandler('Contact deleted!');
+                }
+                else {
+                    errorHandler('error in deleting the contact, try again');
                 }
             });
         }
