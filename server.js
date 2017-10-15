@@ -43,3 +43,4 @@ require("./server/app")(app, mongoose);
 
 // serve the html files to the client from public directory
 app.use(express.static(__dirname + '/public'));
+app.use('/scripts', express.static(__dirname + '/node_modules'));
