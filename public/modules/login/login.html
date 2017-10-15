@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="form_bg">
+            <form ng-submit="userCtrl.login()">
+                <h2 class="text-center">Login Page</h2>
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="userid" placeholder="Username" ng-model="userCtrl.username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="pwd" placeholder="Password" ng-model="userCtrl.password">
+                </div>
+                <br/>
+                <div class="align-center">
+                    <input type="submit" class="btn btn-default" id="login" ng-submit="userCtrl.login()">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

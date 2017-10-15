@@ -21,6 +21,13 @@ app.set('jwt_library', jwt);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// serve the html files to the client from public directory
+app.use(express.static(__dirname + '/public'));
+
+// serve the node_modules to the client
+app.use('/scripts', express.static(__dirname + '/node_modules'));
+
+require("./server/app")(app, mongoose);
 
 // =======================
 // routes ================
@@ -38,5 +45,3 @@ app.get('/', function(req, res) {
 // =======================
 app.listen(port);
 console.log('Magic happens at http://localhost:' + port);
-
-require("./server/app")(app, mongoose);
