@@ -1,4 +1,4 @@
 module.exports = function (app) {
-    var userDAO = require("./dao/UserDAO")();
-    require("./service/UserService")(app, userDAO);
+    var contactDAO = require("./dao/ContactDAO")();
+    require("./service/ContactService")(app, contactDAO);
 };
