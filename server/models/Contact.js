@@ -13,5 +13,5 @@ module.exports = mongoose.model('Contact', new Schema({
     photo: String,
     group: [String],
     password: String,
-    admin: {type: Boolean, default: Date.now},
+    contacts: [{type: mongoose.Schema.ObjectId, ref: "Contact"}]
 }, {collection: 'Contact'}));
