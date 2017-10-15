@@ -13,6 +13,7 @@
         self.getContacts = getContacts();
         self.openAddContactDialog = openAddContactDialog;
         self.deleteContact = deleteContact;
+        self.editContact = editContact;
 
         if (!self.token || self.token.length <= 0) {
             $location.path("/login");
@@ -60,10 +61,15 @@
             }, function () {
                 contactService.deleteContact(contact._id, self.token).then(function () {
                     swal("Contact deleted");
+                    getContacts();
                 }, function(error) {
                     swal("Contact was not deleted, try again in few minutes");
                 });
             });
+        }
+
+        function editContact (contact) {
+            swal("Info", "This feature is not yet built, coming soon !!!")
         }
 
     }

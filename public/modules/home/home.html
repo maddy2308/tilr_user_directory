@@ -10,27 +10,35 @@
     <h4>My Contacts: </h4>
 
     <!--We could use here a card layout which is available with angular-md or bootstrap v4 or
-    something that i just added as commented html block down below-->
+    something that i just added as html block down below-->
 
-    <div class="list-group col-md-4 col-sm-8 col-xs-12" ng-repeat="contact in homeCtrl.mycontacts">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
-             class="img-responsive img-thumbnail" style="height: 50px">
-        <a href="" class="">{{contact.first_name}} {{contact.last_name}}</a>
-        <a href="" ng-click="homeCtrl.deleteContact(contact)">
-            <span class="glyphicon glyphicon-trash"></span>
-        </a>
-    </div>
-
-    <!--<div ng-repeat="contact in homeCtrl.mycontacts">-->
-        <!--<div class="card col-xs-12 col-md-4">-->
-            <!--<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"-->
-                 <!--alt="Avatar" style="width:20%">-->
-            <!--<div class="container">-->
-                <!--<h4><b>{{contact.first_name}} {{contact.last_name}}</b></h4>-->
-                <!--<p>{{contact.phone}}</p>-->
-            <!--</div>-->
-        <!--</div>-->
+    <!--<div class="list-group col-md-4 col-sm-8 col-xs-12" ng-repeat="contact in homeCtrl.mycontacts">-->
+        <!--<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"-->
+             <!--class="img-responsive img-thumbnail" style="height: 50px">-->
+        <!--<a href="" class="">{{contact.first_name}} {{contact.last_name}}</a>-->
+        <!--<a href="" ng-click="homeCtrl.deleteContact(contact)">-->
+            <!--<span class="glyphicon glyphicon-trash"></span>-->
+        <!--</a>-->
     <!--</div>-->
+
+    <div ng-repeat="contact in homeCtrl.mycontacts">
+        <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                 alt="Avatar" style="width:20%">
+            <div class="container">
+                <h4><b>{{contact.first_name}} {{contact.last_name}}</b></h4>
+                <p><span class="glyphicon glyphicon-phone"></span> {{contact.phone || 'N/A'}}</p>
+                <div>
+                    <a href="" ng-click="homeCtrl.editContact(contact)">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <a href="" ng-click="homeCtrl.deleteContact(contact)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="alert-danger" ng-if="homeCtrl.mycontacts.length <= 0">
         You don't have any contacts. Please add contacts!!!
